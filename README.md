@@ -1,1 +1,3 @@
 # BasicE-Book
+
+ABOGOBOGA, HESOYAM, YEAMPLOW
