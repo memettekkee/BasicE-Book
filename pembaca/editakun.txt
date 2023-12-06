@@ -1,0 +1,72 @@
+<?php
+include_once("../conn.php");
+
+if (isset($_POST['edit'])) {
+    $id = $_POST['id'];
+    $nama = $_POST['nama'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    // $no = $_POST['no'];
+    
+    $result = mysqli_query($conn, "UPDATE pembaca SET nama='$nama',username='$username',password='$password' WHERE id=$id");
+    header("Location: index.php");
+}
+?>
+<?php
+$id = $_GET['id'];
+$result = mysqli_query($conn, "SELECT * FROM pembaca WHERE id=$id");
+
+while ($user_data = mysqli_fetch_array($result)) {
+    $nama = $user_data['nama'];
+    $username = $user_data['username'];
+    $password = $user_data['password'];
+    
+    // $no = $user_data['no'];
+    // $kode = $user_data['kode_barang'];
+    // $nama = $user_data['Nama_Barang'];
+    // $merek = $user_data['merek_barang'];
+    // $jumlah = $user_data['jumlah_Barang'];
+    // $kondisi = $user_data['Kondisi_Barang'];
+    // $keterangan = $user_data['keterangan'];
+}
+?>
+
+<html>
+
+<head>
+    <title>Edit Barang</title>
+    <link rel="stylesheet" href="../styletambah.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.php" class="jdl">Kembali ke Daftar Buku</a>
+        <br /><br />
+        <form name="update_user" method="post" action="editakun.php">
+            <table width="25%" border="0">
+                <!-- <tr>
+                    <td>No</td>
+                    <td><input type="text" name="no" value=  ></td>
+                </tr> -->
+                <tr>
+                    <td>Nama</td>
+                    <td><input type="text" name="no" value=<?php echo $nama; ?>></td>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" name="no" value=<?php echo $username; ?>></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="text" name="no" value=<?php echo $password; ?>></td>
+                </tr>
+                
+                    <td><input type="hidden" name="id" value=<?php echo $_GET['id']; ?>></td>
+                    <td><input type="submit" name="edit" value="Edit" class="sini"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>
